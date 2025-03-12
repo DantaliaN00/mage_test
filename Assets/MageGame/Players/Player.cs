@@ -7,49 +7,41 @@ using UnityEngine;
 namespace MageGame.Players
 {
     [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(DirectionMovement))]
     public class Player : MonoBehaviour
     {
-        [SerializeField]
-        float moveSpeed = 3f;
-        
-        [SerializeField]
-        float rotationSpeed = 3f;
-        
         public bool IsAlive => Health.IsAlive;
         
         [CanBeNull]
         Health _health;
         Health Health => _health ??= GetComponent<Health>();
         
+        [CanBeNull]
+        DirectionMovement _movement;
+        DirectionMovement Movement => _movement ??= GetComponent<DirectionMovement>();
+        
         int currentSkillIndex = 0;
         
         readonly List<ASkill> skills = new();
         
-        Vector3 MoveDirection { get; set; } = Vector3.zero;
-        Quaternion Rotation { get; set; } = Quaternion.identity;
-        
-        void FixedUpdate()
-        {
-            transform.position += moveSpeed * Time.fixedDeltaTime * MoveDirection;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Rotation, rotationSpeed * Time.fixedDeltaTime);
-        }
-        
-        public void Initialize(float maxHp, float protection, IEnumerable<ASkill> playerSkills)
+        public void Initialize(float maxHp, float protection, float moveSpeed, float rotationSpeed, IEnumerable<ASkill> playerSkills)
         {
             Health.MaxHp = maxHp;
             Health.Protection = protection;
+            Movement.MoveSpeed = moveSpeed;
+            Movement.RotationSpeed = rotationSpeed;
             skills.Clear();
             skills.AddRange(playerSkills);
         }
         
         public void Move(Vector3 direction)
         {
-            MoveDirection = direction;
+            Movement.MoveDirection = direction;
         }
         
         public void Rotate(Quaternion rotation)
         {
-            Rotation = rotation;
+            Movement.Rotation = rotation;
         }
         
         public void UseSkill()

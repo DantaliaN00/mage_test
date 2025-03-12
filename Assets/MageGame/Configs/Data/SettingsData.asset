@@ -14,14 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnemyCount: 10
   playerMaxHp: 100
-  playerProtection: 1
+  playerProtection: 0
+  playerMoveSpeed: 5
+  playerRotationSpeed: 100
   playerSkillPrefabs:
   - {fileID: 3949252544287979049, guid: faefd20023b3797458d313ed773d26d8, type: 3}
   - {fileID: 3949252544287979049, guid: 56f58d3e3c0ba8c4b99195138d9180cd, type: 3}
   enemies:
   - maxHp: 1
     protection: 0
-    damage: 10
+    damage: 5
+    moveSpeed: 2
+    rotationSpeed: 10
   - maxHp: 1
     protection: 0
     damage: 10
+    moveSpeed: 1
+    rotationSpeed: 10

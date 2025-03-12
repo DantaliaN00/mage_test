@@ -45,10 +45,12 @@ namespace MageGame.Enemies
                 Destroy(gameObject);
         }
         
-        public void Initialize(float maxHp, float protection, float damage)
+        public void Initialize(float maxHp, float protection, float moveSpeed, float rotationSpeed, float damage)
         {
             Health.MaxHp = maxHp;
             Health.Protection = protection;
+            Movement.MoveSpeed = moveSpeed;
+            Movement.RotationSpeed = rotationSpeed;
             Damager.Damage = damage;
         }
         

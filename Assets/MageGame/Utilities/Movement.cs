@@ -5,11 +5,9 @@ namespace MageGame.Utilities
 {
     public class Movement : MonoBehaviour
     {
-        [SerializeField] 
-        float moveSpeed = 3f;
+        public float MoveSpeed { get; set; } = 3f;
 
-        [SerializeField] 
-        float rotationSpeed = 10f;
+        public float RotationSpeed { get; set; } = 10f;
         
         [CanBeNull]
         public Transform Target { get; set; }
@@ -19,8 +17,8 @@ namespace MageGame.Utilities
             if (Target == null)
                 return;
             
-            transform.position = Vector3.MoveTowards(transform.position, Target.position, moveSpeed * Time.fixedDeltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(transform.position - Target.position), rotationSpeed * Time.fixedDeltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, Target.position, MoveSpeed * Time.fixedDeltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(transform.position - Target.position), RotationSpeed * Time.fixedDeltaTime);
         }
     }
 }

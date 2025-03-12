@@ -61,7 +61,7 @@ namespace MageGame
                 var spawnPosition = new Vector3(spawnPosition2d.x, 0f, spawnPosition2d.y);
                 
                 var instance = Instantiate(enemyPrefab, spawnPosition, Quaternion.LookRotation(spawnPosition - player.transform.position));
-                instance.Initialize(enemyData.MaxHp, 1f - Mathf.Clamp01(enemyData.Protection), enemyData.Damage);
+                instance.Initialize(enemyData.MaxHp, 1f - Mathf.Clamp01(enemyData.Protection), enemyData.MoveSpeed, enemyData.RotationSpeed, enemyData.Damage);
                 
                 instance.Target = player;
                 
@@ -85,7 +85,7 @@ namespace MageGame
                 skills.Add(skillInstance);
             }
             
-            instance.Initialize(settingsData.PlayerMaxHp, 1f - Mathf.Clamp01(settingsData.PlayerProtection), skills);
+            instance.Initialize(settingsData.PlayerMaxHp, 1f - Mathf.Clamp01(settingsData.PlayerProtection), settingsData.PlayerMoveSpeed, settingsData.PlayerRotationSpeed, skills);
             
             player = instance;
         }
